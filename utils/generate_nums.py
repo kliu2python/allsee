@@ -9,10 +9,13 @@ class GenerateNums:
     def generator(self) -> list[int]:
         num_list = []
         dupe = set()
+        i = 0
         if self.is_random:
-            for _ in range(self.size):
+            while i < self.size:
                 tmp = random.randint(0, self.size + 5)
                 if tmp not in dupe:
                     num_list.append(tmp)
                     dupe.add(tmp)
+                    i += 1
+
         return num_list

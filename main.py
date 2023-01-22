@@ -1,13 +1,28 @@
 from Runner import runner
-from algorithems.search.search_base import SearchBase
+from algorithems.sort.select_sort import SelectSearch
 
 
-def search_starter():
+def search_starter(
+    size: int = 0,
+    is_random: bool = False
+):
     with runner(
-            base=SearchBase
+        size,
+        is_random,
+        base=SelectSearch
     ) as session:
         yield session
 
 
 if __name__ == '__main__':
-    pass
+    select = input("Do you want to generate the list or generate random one for you? (g/G or r/R)")
+    if select in ["g", "G"]:
+        pass
+    else:
+        list_size = input("What size of list you want? (must greater than 0)")
+        print("Generating the list for you...")
+        starter = search_starter(int(list_size), is_random=True)
+        res = next(starter)
+        print(f"Before select sort is {res[0]}")
+        print(f"After select sort is  {res[1]}")
+        print(res[2])
