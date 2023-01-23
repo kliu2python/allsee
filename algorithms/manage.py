@@ -22,3 +22,7 @@ class Manage:
     def release_db(self, key):
         self.dic_status.clear()
         r.client.delete(key)
+
+    @classmethod
+    def show_dbs_list(cls):
+        return r.client.keys()
