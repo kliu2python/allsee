@@ -7,7 +7,7 @@ class SelectSearch(SortBase):
         return self.setup()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        return self.release_db("select_sort")
 
     def select_sort(self, num_list):
         items = num_list[:]
@@ -17,6 +17,7 @@ class SelectSearch(SortBase):
                 if self.compare(items[j], items[min_index]):
                     min_index = j
             items[i], items[min_index] = items[min_index], items[i]
+            self.save_status("select_sort", items)
         return items
 
     def setup(self):
@@ -24,5 +25,5 @@ class SelectSearch(SortBase):
         start_time = RunningTimer.start_timer()
         new_list = self.select_sort(num_list)
         end_time = RunningTimer.stop_timer()
-        return [num_list, new_list, RunningTimer.timer(start_time, end_time)]
+        return [num_list, new_list, RunningTimer.timer(start_time, end_time), self.show_status("select_sort")]
 
