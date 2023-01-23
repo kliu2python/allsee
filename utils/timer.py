@@ -12,4 +12,4 @@ class RunningTimer:
 
     @classmethod
     def timer(cls, start_time, stop_time):
-        return f"The running time is: {(stop_time - start_time).microseconds} ms"
+        return f"The running time: {(stop_time - start_time).microseconds} ms."
